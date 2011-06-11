@@ -129,6 +129,10 @@ elem *callfunc(Loc loc,
         for (i = 0; i < arguments->dim ; i++)
         {   Expression *arg = (Expression *)arguments->data[i];
             elem *ea;
+            
+            // Peel named arguments
+            if (arg->op == TOKnamedarg)
+                arg = ((NamedArgumentExp *)arg)->e1;
 
             //printf("\targ[%d]: %s\n", i, arg->toChars());
 

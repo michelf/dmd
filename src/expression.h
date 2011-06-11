@@ -962,6 +962,16 @@ struct CallExp : UnaExp
     Expression *inlineScan(InlineScanState *iss);
 };
 
+struct NamedArgumentExp : UnaExp
+{
+    Identifier *argName;
+    
+    NamedArgumentExp(Loc loc, Identifier *name, Expression *e);
+    Expression *syntaxCopy();
+    Expression *semantic(Scope *sc);
+    void toCBuffer(OutBuffer *buf, HdrGenState *hgs);
+};
+
 struct AddrExp : UnaExp
 {
     AddrExp(Loc loc, Expression *e);
